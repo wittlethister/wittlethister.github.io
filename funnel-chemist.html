@@ -126,30 +126,71 @@
   .trust-row .item{display:flex;align-items:center;gap:9px;font-size:.85rem;color:var(--text-muted);}
   .trust-row .item svg{flex:none;width:18px;height:18px;}
 
-  /* hero visual - mock browser */
+  /* hero visual - animated system diagram */
   .hero-visual{position:relative;}
-  .browser-card{
+  .flow-diagram{
     background:var(--bg-card);
     border:1px solid var(--border);
-    border-radius:20px;
+    border-radius:22px;
     box-shadow:0 30px 80px rgba(0,0,0,.55), var(--shadow-glow);
-    overflow:hidden;
-    transform:rotate(1.2deg);
+    padding:22px;
+    transform:rotate(.6deg);
   }
-  .browser-bar{display:flex;gap:6px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);}
-  .browser-bar span{width:9px;height:9px;border-radius:50%;background:#3a3640;}
-  .browser-bar span:nth-child(1){background:#ff6b8f;}
-  .browser-bar span:nth-child(2){background:#ffd48a;}
-  .browser-bar span:nth-child(3){background:#8affc1;}
-  .browser-body{padding:26px;}
-  .fake-headline{height:14px;width:70%;border-radius:5px;background:linear-gradient(90deg,var(--pink-pastel),var(--pink-pastel-soft));margin-bottom:10px;opacity:.9;}
-  .fake-line{height:9px;border-radius:5px;background:#2c2833;margin-bottom:9px;}
-  .fake-block{margin-top:18px;height:120px;border-radius:14px;background:linear-gradient(135deg,rgba(255,79,160,.28),rgba(255,214,234,.08));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
-  .fake-block .flow{display:flex;gap:10px;}
-  .fake-block .flow div{width:34px;height:34px;border-radius:10px;background:var(--pink-hot);opacity:.85;}
-  .fake-block .flow div:nth-child(2){background:var(--pink-pastel);opacity:.9;transform:translateY(6px);}
-  .fake-block .flow div:nth-child(3){background:var(--pink-hot-2);opacity:.85;}
-  .fake-btn{margin-top:18px;height:36px;width:140px;border-radius:100px;background:linear-gradient(135deg,var(--pink-hot),var(--pink-hot-2));}
+  .flow-diagram svg{width:100%;height:auto;display:block;overflow:visible;}
+  .flow-path{
+    fill:none;stroke:url(#flowGrad);stroke-width:2;stroke-linecap:round;
+    stroke-dasharray:6 10;animation:flow-dash 2.6s linear infinite;
+  }
+  .flow-path.slow{animation-duration:3.6s;}
+  @keyframes flow-dash{ to{ stroke-dashoffset:-160; } }
+  .flow-hub{animation:hub-pulse 2.8s ease-in-out infinite;}
+  @keyframes hub-pulse{
+    0%,100%{ filter:drop-shadow(0 0 8px rgba(255,79,160,.5)); }
+    50%{ filter:drop-shadow(0 0 20px rgba(255,79,160,.85)); }
+  }
+  .flow-node{transition:transform .25s ease;}
+  .flow-node:hover{transform:translateY(-3px);}
+  @media (prefers-reduced-motion: reduce){
+    .flow-path{animation:none;}
+    .flow-hub{animation:none;}
+  }
+
+  /* ================= beam border ================= */
+  @property --beam-angle{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+  .beam-border{position:relative;isolation:isolate;}
+  .beam-border::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;
+    padding:1px;
+    background:conic-gradient(from var(--beam-angle), transparent 0 72%, var(--pink-pastel) 84%, var(--pink-hot) 92%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    animation:beam-spin 5s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes beam-spin{ to{ --beam-angle:360deg; } }
+  @media (prefers-reduced-motion: reduce){ .beam-border::before{animation:none;} }
+
+  /* ================= accordion ================= */
+  .accordion{display:flex;flex-direction:column;gap:14px;}
+  .acc-item{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+  .acc-trigger{
+    width:100%;display:flex;align-items:center;gap:16px;
+    background:none;border:none;cursor:pointer;text-align:left;
+    padding:20px 22px;color:var(--text-main);font-family:'Poppins',sans-serif;
+  }
+  .acc-num{font-family:'Fraunces',serif;font-size:.85rem;color:var(--pink-pastel);opacity:.7;flex:none;width:26px;}
+  .acc-title{flex:1;font-size:1.02rem;font-weight:500;}
+  .acc-icon{
+    flex:none;width:28px;height:28px;border-radius:50%;
+    background:rgba(255,79,160,.12);color:var(--pink-hot);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;font-weight:600;transition:transform .3s ease, background .3s ease, color .3s ease;
+  }
+  .acc-trigger[aria-expanded="true"] .acc-icon{transform:rotate(45deg);background:var(--pink-hot);color:#0b0a0d;}
+  .acc-panel{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .acc-panel-inner{padding:0 22px 22px 64px;color:var(--text-muted);font-size:.95rem;max-width:620px;}
+
   .float-chip{
     position:absolute;background:var(--bg-card);border:1px solid var(--border);
     border-radius:14px;padding:12px 16px;font-size:.82rem;font-weight:500;
@@ -212,22 +253,15 @@
     padding:26px 24px;transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
   }
   .glance-card:hover{transform:translateY(-4px);border-color:rgba(255,182,217,.4);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+  .glance-grid .glance-card:nth-child(2)::before{animation-delay:-.8s;}
+  .glance-grid .glance-card:nth-child(3)::before{animation-delay:-1.6s;}
+  .glance-grid .glance-card:nth-child(4)::before{animation-delay:-2.4s;}
+  .glance-grid .glance-card:nth-child(5)::before{animation-delay:-3.2s;}
+  .glance-grid .glance-card:nth-child(6)::before{animation-delay:-4s;}
   .glance-card .ic{font-size:1.6rem;margin-bottom:14px;display:block;}
   .glance-card h3{font-size:1.08rem;font-weight:600;font-family:'Poppins',sans-serif;margin-bottom:8px;color:var(--text-main);}
   .glance-card p{font-size:.92rem;color:var(--text-muted);}
   .tagline-center{text-align:center;margin-top:44px;font-family:'Fraunces',serif;font-size:1.2rem;color:var(--pink-pastel);}
-
-  /* how i can help - alternating rows */
-  .help-row{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:38px 0;border-bottom:1px solid var(--border);}
-  .help-row:last-child{border-bottom:none;}
-  @media(min-width:820px){.help-row{grid-template-columns:.5fr 1fr;}}
-  .help-num{
-    font-family:'Fraunces',serif;font-size:3rem;color:transparent;
-    -webkit-text-stroke:1.4px rgba(255,182,217,.35);
-    line-height:1;
-  }
-  .help-row h3{font-size:1.3rem;font-weight:500;margin-bottom:10px;color:var(--text-main);display:flex;align-items:center;gap:10px;}
-  .help-row p{color:var(--text-muted);max-width:620px;}
 
   /* why clients choose */
   .why-wrap{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
@@ -253,9 +287,19 @@
   /* how it works steps */
   .steps{display:grid;grid-template-columns:1fr;gap:20px;position:relative;}
   @media(min-width:760px){.steps{grid-template-columns:repeat(5,1fr);gap:16px;}}
+  .steps::before{
+    content:"";position:absolute;top:41px;left:6%;right:6%;height:2px;z-index:0;
+    background-image:linear-gradient(90deg, var(--pink-pastel) 0 8px, transparent 8px 16px);
+    background-size:16px 2px;opacity:.32;
+    animation:steps-flow 1.6s linear infinite;
+    display:none;
+  }
+  @media(min-width:760px){.steps::before{display:block;}}
+  @keyframes steps-flow{ to{ background-position:16px 0; } }
+  @media (prefers-reduced-motion: reduce){ .steps::before{animation:none;} }
   .step{
     background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;
-    position:relative;
+    position:relative;z-index:1;
   }
   .step .num{
     width:34px;height:34px;border-radius:50%;
@@ -375,15 +419,53 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="browser-card">
-            <div class="browser-bar"><span></span><span></span><span></span></div>
-            <div class="browser-body">
-              <div class="fake-headline"></div>
-              <div class="fake-line" style="width:90%"></div>
-              <div class="fake-line" style="width:60%"></div>
-              <div class="fake-block"><div class="flow"><div></div><div></div><div></div></div></div>
-              <div class="fake-btn"></div>
-            </div>
+          <div class="flow-diagram beam-border">
+            <svg viewBox="0 0 620 420" role="img" aria-label="Diagram showing ClickFunnels, HighLevel, CRM, automations, design, and support all connected to one central system">
+              <defs>
+                <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ffd6ea"/>
+                  <stop offset="100%" stop-color="#ff4fa0"/>
+                </linearGradient>
+              </defs>
+
+              <path class="flow-path" d="M140,47 H200 V190 H268" />
+              <path class="flow-path slow" d="M140,210 H268" />
+              <path class="flow-path" d="M140,373 H200 V230 H268" />
+              <path class="flow-path slow" d="M480,47 H420 V190 H352" />
+              <path class="flow-path" d="M480,210 H352" />
+              <path class="flow-path slow" d="M480,373 H420 V230 H352" />
+
+              <g class="flow-hub">
+                <rect x="268" y="168" width="84" height="84" rx="22" fill="url(#flowGrad)" opacity=".16"/>
+                <rect x="268" y="168" width="84" height="84" rx="22" fill="#1a1720" stroke="#f3c6de" stroke-width="1.4"/>
+                <text x="310" y="220" text-anchor="middle" font-size="30">⚗️</text>
+              </g>
+
+              <g class="flow-node">
+                <rect x="8" y="20" width="132" height="54" rx="14" fill="#211c28" stroke="rgba(255,182,217,.25)" stroke-width="1.2"/>
+                <text x="74" y="52" text-anchor="middle" font-size="12" font-weight="600" fill="#f8f4f6" font-family="Poppins, sans-serif">🎯 ClickFunnels</text>
+              </g>
+              <g class="flow-node">
+                <rect x="8" y="183" width="132" height="54" rx="14" fill="#211c28" stroke="rgba(255,182,217,.25)" stroke-width="1.2"/>
+                <text x="74" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#f8f4f6" font-family="Poppins, sans-serif">🧩 CRM</text>
+              </g>
+              <g class="flow-node">
+                <rect x="8" y="346" width="132" height="54" rx="14" fill="#211c28" stroke="rgba(255,182,217,.25)" stroke-width="1.2"/>
+                <text x="74" y="378" text-anchor="middle" font-size="12" font-weight="600" fill="#f8f4f6" font-family="Poppins, sans-serif">🎨 Design</text>
+              </g>
+              <g class="flow-node">
+                <rect x="480" y="20" width="132" height="54" rx="14" fill="#211c28" stroke="rgba(255,182,217,.25)" stroke-width="1.2"/>
+                <text x="546" y="52" text-anchor="middle" font-size="12" font-weight="600" fill="#f8f4f6" font-family="Poppins, sans-serif">⚙️ HighLevel</text>
+              </g>
+              <g class="flow-node">
+                <rect x="480" y="183" width="132" height="54" rx="14" fill="#211c28" stroke="rgba(255,182,217,.25)" stroke-width="1.2"/>
+                <text x="546" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#f8f4f6" font-family="Poppins, sans-serif">🔁 Automations</text>
+              </g>
+              <g class="flow-node">
+                <rect x="480" y="346" width="132" height="54" rx="14" fill="#211c28" stroke="rgba(255,182,217,.25)" stroke-width="1.2"/>
+                <text x="546" y="378" text-anchor="middle" font-size="12" font-weight="600" fill="#f8f4f6" font-family="Poppins, sans-serif">🤝 Support</text>
+              </g>
+            </svg>
           </div>
           <div class="float-chip one"><span class="dotcheck">✓</span> Live &amp; converting</div>
           <div class="float-chip two"><span class="dotcheck">⚙</span> Automations running</div>
@@ -445,12 +527,12 @@
           <h2>Everything you need to launch, grow, and run your business online — <em>done for you.</em></h2>
         </div>
         <div class="glance-grid reveal">
-          <div class="glance-card"><span class="ic">🔍</span><h3>Strategy &amp; Funnel Planning</h3><p>Clear structure and client journey before anything is built.</p></div>
-          <div class="glance-card"><span class="ic">🎨</span><h3>Funnel, Website &amp; Visual Design</h3><p>Custom, on-brand design that looks polished and converts.</p></div>
-          <div class="glance-card"><span class="ic">⚙️</span><h3>Automation &amp; Backend Setup</h3><p>HighLevel and ClickFunnels workflows, CRM, and integrations — done for you.</p></div>
-          <div class="glance-card"><span class="ic">📄</span><h3>Marketing Collaterals &amp; Brand Assets</h3><p>PDFs, lead magnets, social graphics, banners, and launch visuals.</p></div>
-          <div class="glance-card"><span class="ic">🎓</span><h3>Course &amp; Membership Setup</h3><p>Branded course areas with a seamless client experience.</p></div>
-          <div class="glance-card"><span class="ic">🤝</span><h3>Ongoing Support &amp; Optimization</h3><p>Refinements and guidance to keep everything running smoothly.</p></div>
+          <div class="glance-card beam-border"><span class="ic">🔍</span><h3>Strategy &amp; Funnel Planning</h3><p>Clear structure and client journey before anything is built.</p></div>
+          <div class="glance-card beam-border"><span class="ic">🎨</span><h3>Funnel, Website &amp; Visual Design</h3><p>Custom, on-brand design that looks polished and converts.</p></div>
+          <div class="glance-card beam-border"><span class="ic">⚙️</span><h3>Automation &amp; Backend Setup</h3><p>HighLevel and ClickFunnels workflows, CRM, and integrations — done for you.</p></div>
+          <div class="glance-card beam-border"><span class="ic">📄</span><h3>Marketing Collaterals &amp; Brand Assets</h3><p>PDFs, lead magnets, social graphics, banners, and launch visuals.</p></div>
+          <div class="glance-card beam-border"><span class="ic">🎓</span><h3>Course &amp; Membership Setup</h3><p>Branded course areas with a seamless client experience.</p></div>
+          <div class="glance-card beam-border"><span class="ic">🤝</span><h3>Ongoing Support &amp; Optimization</h3><p>Refinements and guidance to keep everything running smoothly.</p></div>
         </div>
         <p class="tagline-center reveal">One partner. One system. Everything connected.</p>
       </div>
@@ -463,30 +545,54 @@
           <div class="eyebrow" style="margin-left:auto;margin-right:auto;">🛠️ How I Can Help You</div>
           <h2>Strategy, design, and automation — <em>working together.</em></h2>
         </div>
-        <div class="reveal">
-          <div class="help-row">
-            <div class="help-num">01</div>
-            <div><h3>🔍 Strategic Funnel &amp; System Planning</h3><p>We map your full client journey — from first click to conversion — so everything is built with intention and clarity.</p></div>
+        <div class="accordion reveal" data-accordion>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="true">
+              <span class="acc-num">01</span>
+              <span class="acc-title">🔍 Strategic Funnel &amp; System Planning</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>We map your full client journey — from first click to conversion — so everything is built with intention and clarity.</p></div></div>
           </div>
-          <div class="help-row">
-            <div class="help-num">02</div>
-            <div><h3>🎨 Funnel, Website &amp; Visual Design</h3><p>I design pages and assets that reflect your brand and build trust instantly — no templates, no guesswork.</p></div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span class="acc-num">02</span>
+              <span class="acc-title">🎨 Funnel, Website &amp; Visual Design</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>I design pages and assets that reflect your brand and build trust instantly — no templates, no guesswork.</p></div></div>
           </div>
-          <div class="help-row">
-            <div class="help-num">03</div>
-            <div><h3>⚙️ Automation &amp; Backend Setup</h3><p>From HighLevel to ClickFunnels, I handle your workflows, CRM, and integrations so your systems run seamlessly in the background.</p></div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span class="acc-num">03</span>
+              <span class="acc-title">⚙️ Automation &amp; Backend Setup</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>From HighLevel to ClickFunnels, I handle your workflows, CRM, and integrations so your systems run seamlessly in the background.</p></div></div>
           </div>
-          <div class="help-row">
-            <div class="help-num">04</div>
-            <div><h3>📄 Marketing Collateral &amp; Brand Assets</h3><p>Your brand stays consistent across every touchpoint — from PDFs to social media to launch materials.</p></div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span class="acc-num">04</span>
+              <span class="acc-title">📄 Marketing Collateral &amp; Brand Assets</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>Your brand stays consistent across every touchpoint — from PDFs to social media to launch materials.</p></div></div>
           </div>
-          <div class="help-row">
-            <div class="help-num">05</div>
-            <div><h3>🎓 Course &amp; Membership Setup</h3><p>I structure and design your course or membership area so it's easy for you — and your clients — to navigate.</p></div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span class="acc-num">05</span>
+              <span class="acc-title">🎓 Course &amp; Membership Setup</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>I structure and design your course or membership area so it's easy for you — and your clients — to navigate.</p></div></div>
           </div>
-          <div class="help-row">
-            <div class="help-num">06</div>
-            <div><h3>🤝 Ongoing Support &amp; Optimization</h3><p>Refinements, adjustments, and guidance so your systems continue to work smoothly after launch.</p></div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span class="acc-num">06</span>
+              <span class="acc-title">🤝 Ongoing Support &amp; Optimization</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-panel"><div class="acc-panel-inner"><p>Refinements, adjustments, and guidance so your systems continue to work smoothly after launch.</p></div></div>
           </div>
         </div>
         <p class="tagline-center reveal">One partner. One system. Everything connected.</p>
@@ -600,7 +706,7 @@
     <!-- FINAL CTA -->
     <section class="section alt">
       <div class="wrap">
-        <div class="final-cta reveal" id="final-cta">
+        <div class="final-cta beam-border reveal" id="final-cta">
           <div class="bg-glow"><span style="width:400px;height:400px;background:#ff2e86;top:-120px;left:40%;opacity:.25;"></span></div>
           <div class="eyebrow" style="margin-left:auto;margin-right:auto;position:relative;z-index:1;">🔥 Let's Get Started</div>
           <h2 style="position:relative;z-index:1;">Ready to stop figuring it out and finally have a system that works?</h2>
@@ -639,6 +745,41 @@
     mobileMenu.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
   }));
+
+  // accordion
+  document.querySelectorAll('[data-accordion]').forEach(acc => {
+    const items = Array.from(acc.querySelectorAll('.acc-item'));
+    const openItem = (item) => {
+      const trigger = item.querySelector('.acc-trigger');
+      const panel = item.querySelector('.acc-panel');
+      trigger.setAttribute('aria-expanded', 'true');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    };
+    const closeItem = (item) => {
+      const trigger = item.querySelector('.acc-trigger');
+      const panel = item.querySelector('.acc-panel');
+      trigger.setAttribute('aria-expanded', 'false');
+      panel.style.maxHeight = '0px';
+    };
+    items.forEach(item => {
+      const trigger = item.querySelector('.acc-trigger');
+      trigger.addEventListener('click', () => {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        items.forEach(closeItem);
+        if (!isOpen) openItem(item);
+      });
+    });
+    const initial = items.find(item => item.querySelector('.acc-trigger').getAttribute('aria-expanded') === 'true');
+    if (initial) openItem(initial);
+    window.addEventListener('resize', () => {
+      items.forEach(item => {
+        if (item.querySelector('.acc-trigger').getAttribute('aria-expanded') === 'true') {
+          const panel = item.querySelector('.acc-panel');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  });
 
   // scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
