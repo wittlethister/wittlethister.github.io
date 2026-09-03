@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Funnel Chemist | Done-For-You Funnels, Automation &amp; Design</title>
+<meta name="description" content="Done-for-you funnels, automation, and design for women-owned service businesses—without tech stress or guesswork. Book a discovery call with The Funnel Chemist.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230b0a0d'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23ff4fa0' font-family='Georgia,serif'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a0d;
+    --bg-alt:#141218;
+    --bg-card:#1a1720;
+    --pink-pastel:#ffd6ea;
+    --pink-pastel-soft:#f3c6de;
+    --pink-hot:#ff4fa0;
+    --pink-hot-2:#ff2e86;
+    --text-main:#f8f4f6;
+    --text-muted:#bdb3bc;
+    --border:rgba(255,182,217,.14);
+    --shadow-glow:0 0 60px rgba(255,79,160,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text-main);
+    font-family:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  section{position:relative;}
+  ::selection{background:var(--pink-hot);color:#0b0a0d;}
+
+  /* background texture */
+  .bg-glow{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+  .bg-glow span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;}
+
+  /* announcement bar */
+  .announce{
+    background:linear-gradient(90deg,#ff2e86,#ff4fa0 50%,#ff2e86);
+    color:#0b0a0d;
+    text-align:center;
+    font-size:.82rem;
+    font-weight:600;
+    letter-spacing:.02em;
+    padding:9px 16px;
+  }
+
+  /* nav */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,10,13,.78);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1160px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;letter-spacing:.01em;}
+  .logo .mark{
+    width:36px;height:36px;border-radius:10px;
+    background:linear-gradient(145deg,var(--pink-hot),#a83367);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;color:#0b0a0d;font-size:1.1rem;
+    box-shadow:0 4px 18px rgba(255,79,160,.35);
+  }
+  .logo .sub{display:block;font-family:'Poppins',sans-serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);font-weight:500;margin-top:1px;}
+  nav.links{display:flex;gap:34px;align-items:center;}
+  nav.links a{font-size:.92rem;color:var(--text-muted);transition:color .2s;}
+  nav.links a:hover{color:var(--pink-pastel);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--pink-hot),var(--pink-hot-2));
+    color:#0b0a0d;font-weight:600;font-size:.92rem;
+    padding:13px 26px;border-radius:100px;border:none;cursor:pointer;
+    box-shadow:0 8px 24px rgba(255,46,134,.35);
+    transition:transform .2s ease, box-shadow .2s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,46,134,.48);}
+  .btn.ghost{
+    background:transparent;border:1px solid var(--pink-pastel-soft);color:var(--pink-pastel);
+    box-shadow:none;
+  }
+  .btn.ghost:hover{background:rgba(255,214,234,.08);}
+  .btn.small{padding:10px 20px;font-size:.85rem;}
+  .nav-cta{display:none;}
+  @media(min-width:900px){.nav-cta{display:inline-flex;}}
+  .burger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+  .burger span{width:24px;height:2px;background:var(--pink-pastel);display:block;}
+  @media(min-width:900px){.burger{display:none;}}
+  .mobile-menu{display:none;flex-direction:column;gap:2px;padding:8px 24px 20px;border-top:1px solid var(--border);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:12px 0;color:var(--text-muted);border-bottom:1px solid rgba(255,255,255,.05);}
+  @media(min-width:900px){nav.links{display:flex;}}
+  @media(max-width:899px){nav.links{display:none;}}
+
+  /* eyebrow */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--pink-pastel);font-weight:600;
+    background:rgba(255,79,160,.1);
+    border:1px solid var(--border);
+    padding:8px 16px;border-radius:100px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--pink-hot);box-shadow:0 0 8px var(--pink-hot);}
+
+  /* hero */
+  .hero{padding:90px 0 100px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:60px;align-items:center;position:relative;z-index:1;}
+  @media(min-width:960px){.hero-grid{grid-template-columns:1.05fr .95fr;}}
+  .hero h1{font-size:clamp(2.3rem,5.2vw,3.6rem);font-weight:500;line-height:1.12;letter-spacing:-.01em;}
+  .hero h1 em{font-style:normal;color:var(--pink-pastel);}
+  .hero p.lead{margin-top:22px;font-size:1.12rem;color:var(--text-muted);max-width:560px;}
+  .hero-ctas{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px;}
+  .trust-row{margin-top:38px;display:flex;flex-wrap:wrap;gap:22px 30px;}
+  .trust-row .item{display:flex;align-items:center;gap:9px;font-size:.85rem;color:var(--text-muted);}
+  .trust-row .item svg{flex:none;width:18px;height:18px;}
+
+  /* hero visual - mock browser */
+  .hero-visual{position:relative;}
+  .browser-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,.55), var(--shadow-glow);
+    overflow:hidden;
+    transform:rotate(1.2deg);
+  }
+  .browser-bar{display:flex;gap:6px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);}
+  .browser-bar span{width:9px;height:9px;border-radius:50%;background:#3a3640;}
+  .browser-bar span:nth-child(1){background:#ff6b8f;}
+  .browser-bar span:nth-child(2){background:#ffd48a;}
+  .browser-bar span:nth-child(3){background:#8affc1;}
+  .browser-body{padding:26px;}
+  .fake-headline{height:14px;width:70%;border-radius:5px;background:linear-gradient(90deg,var(--pink-pastel),var(--pink-pastel-soft));margin-bottom:10px;opacity:.9;}
+  .fake-line{height:9px;border-radius:5px;background:#2c2833;margin-bottom:9px;}
+  .fake-block{margin-top:18px;height:120px;border-radius:14px;background:linear-gradient(135deg,rgba(255,79,160,.28),rgba(255,214,234,.08));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+  .fake-block .flow{display:flex;gap:10px;}
+  .fake-block .flow div{width:34px;height:34px;border-radius:10px;background:var(--pink-hot);opacity:.85;}
+  .fake-block .flow div:nth-child(2){background:var(--pink-pastel);opacity:.9;transform:translateY(6px);}
+  .fake-block .flow div:nth-child(3){background:var(--pink-hot-2);opacity:.85;}
+  .fake-btn{margin-top:18px;height:36px;width:140px;border-radius:100px;background:linear-gradient(135deg,var(--pink-hot),var(--pink-hot-2));}
+  .float-chip{
+    position:absolute;background:var(--bg-card);border:1px solid var(--border);
+    border-radius:14px;padding:12px 16px;font-size:.82rem;font-weight:500;
+    box-shadow:0 14px 34px rgba(0,0,0,.5);display:flex;align-items:center;gap:10px;
+  }
+  .float-chip.one{top:-18px;right:-10px;color:var(--pink-pastel);}
+  .float-chip.two{bottom:-20px;left:-16px;color:var(--text-main);}
+  .float-chip .dotcheck{width:22px;height:22px;border-radius:50%;background:rgba(255,79,160,.18);display:flex;align-items:center;justify-content:center;color:var(--pink-hot);font-size:.75rem;}
+  @media(max-width:600px){.float-chip{display:none;}}
+
+  /* section shared */
+  .section{padding:96px 0;}
+  .section.alt{background:var(--bg-alt);}
+  .section-head{max-width:720px;margin:0 auto 56px;text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:500;line-height:1.22;}
+  .section-head h2 em{font-style:normal;color:var(--pink-pastel);}
+  .section-head p{margin-top:16px;color:var(--text-muted);font-size:1.05rem;}
+  .section-head.left{text-align:left;margin-left:0;}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* I see you / pain points */
+  .pain-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:640px;margin:0 auto;}
+  .pain-item{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--bg-card);border:1px solid var(--border);
+    padding:18px 20px;border-radius:14px;
+  }
+  .pain-item .x{
+    flex:none;width:26px;height:26px;border-radius:50%;
+    background:rgba(255,79,160,.14);color:var(--pink-hot);
+    display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;
+  }
+  .pain-note{text-align:center;max-width:600px;margin:34px auto 0;color:var(--text-muted);font-size:1.02rem;}
+  .pain-note strong{color:var(--pink-pastel);font-weight:600;}
+
+  /* transformation */
+  .transform-wrap{
+    max-width:760px;margin:0 auto;text-align:center;
+    background:linear-gradient(180deg,rgba(255,79,160,.08),transparent);
+    border:1px solid var(--border);border-radius:24px;padding:56px 40px;
+  }
+  .transform-wrap p{font-size:1.15rem;color:var(--text-main);margin-bottom:14px;}
+  .transform-wrap p.muted{color:var(--text-muted);font-size:1rem;}
+  .transform-wrap .stack{margin:26px 0;display:flex;flex-direction:column;gap:8px;font-family:'Fraunces',serif;font-size:1.3rem;color:var(--pink-pastel);}
+
+  /* bridge */
+  .bridge{text-align:center;max-width:640px;margin:0 auto;}
+  .bridge p{font-size:1.15rem;color:var(--text-muted);margin-bottom:10px;}
+  .bridge p.strong{color:var(--text-main);font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;margin:22px 0;}
+
+  /* services glance grid */
+  .glance-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:640px){.glance-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1000px){.glance-grid{grid-template-columns:repeat(3,1fr);}}
+  .glance-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
+    padding:26px 24px;transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .glance-card:hover{transform:translateY(-4px);border-color:rgba(255,182,217,.4);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+  .glance-card .ic{font-size:1.6rem;margin-bottom:14px;display:block;}
+  .glance-card h3{font-size:1.08rem;font-weight:600;font-family:'Poppins',sans-serif;margin-bottom:8px;color:var(--text-main);}
+  .glance-card p{font-size:.92rem;color:var(--text-muted);}
+  .tagline-center{text-align:center;margin-top:44px;font-family:'Fraunces',serif;font-size:1.2rem;color:var(--pink-pastel);}
+
+  /* how i can help - alternating rows */
+  .help-row{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;padding:38px 0;border-bottom:1px solid var(--border);}
+  .help-row:last-child{border-bottom:none;}
+  @media(min-width:820px){.help-row{grid-template-columns:.5fr 1fr;}}
+  .help-num{
+    font-family:'Fraunces',serif;font-size:3rem;color:transparent;
+    -webkit-text-stroke:1.4px rgba(255,182,217,.35);
+    line-height:1;
+  }
+  .help-row h3{font-size:1.3rem;font-weight:500;margin-bottom:10px;color:var(--text-main);display:flex;align-items:center;gap:10px;}
+  .help-row p{color:var(--text-muted);max-width:620px;}
+
+  /* why clients choose */
+  .why-wrap{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+  @media(min-width:900px){.why-wrap{grid-template-columns:.9fr 1.1fr;}}
+  .why-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:40px;
+  }
+  .why-card blockquote{font-family:'Fraunces',serif;font-size:1.4rem;line-height:1.4;color:var(--pink-pastel);font-weight:500;}
+  .why-list{display:flex;flex-direction:column;gap:20px;}
+  .why-list p{color:var(--text-muted);}
+  .why-list p strong{color:var(--text-main);}
+
+  /* work together */
+  .together-grid{display:grid;grid-template-columns:1fr;gap:40px;}
+  @media(min-width:900px){.together-grid{grid-template-columns:1fr 1fr;}}
+  .together-col h3{font-size:1.15rem;color:var(--pink-pastel);margin-bottom:18px;font-weight:600;}
+  .together-list{display:flex;flex-direction:column;gap:14px;}
+  .together-list .row{display:flex;gap:12px;align-items:flex-start;color:var(--text-muted);font-size:.98rem;}
+  .together-list.no .row .ic{color:#8a8391;}
+  .together-list.yes .row .ic{color:var(--pink-hot);}
+  .together-list .ic{flex:none;font-weight:700;}
+
+  /* how it works steps */
+  .steps{display:grid;grid-template-columns:1fr;gap:20px;position:relative;}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(5,1fr);gap:16px;}}
+  .step{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px 20px;
+    position:relative;
+  }
+  .step .num{
+    width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(135deg,var(--pink-hot),var(--pink-hot-2));
+    color:#0b0a0d;font-weight:700;font-size:.9rem;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  .step h3{font-size:.98rem;font-weight:600;margin-bottom:8px;color:var(--text-main);}
+  .step p{font-size:.85rem;color:var(--text-muted);}
+  .steps-note{text-align:center;margin-top:36px;color:var(--pink-pastel);font-family:'Fraunces',serif;font-size:1.1rem;}
+
+  /* testimonials */
+  .testi-grid{display:grid;grid-template-columns:1fr;gap:22px;}
+  @media(min-width:760px){.testi-grid{grid-template-columns:1fr 1fr;}}
+  .testi-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:32px;position:relative;
+  }
+  .testi-card .quote-mark{font-family:'Fraunces',serif;font-size:3rem;color:var(--pink-hot);opacity:.35;line-height:1;margin-bottom:6px;}
+  .testi-card p{font-size:1.05rem;color:var(--text-main);font-style:italic;margin-bottom:20px;}
+  .testi-who{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink-pastel),var(--pink-hot));display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b0a0d;font-size:.85rem;}
+  .testi-who span{font-size:.85rem;color:var(--text-muted);}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:50px;align-items:center;}
+  @media(min-width:900px){.about-grid{grid-template-columns:.85fr 1.15fr;}}
+  .about-portrait{
+    width:100%;aspect-ratio:1/1;max-width:340px;margin:0 auto;border-radius:28px;
+    background:linear-gradient(150deg,rgba(255,79,160,.35),rgba(255,214,234,.08));
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-size:5rem;color:var(--pink-pastel);
+    box-shadow:var(--shadow-glow);
+  }
+  .about-text h2{font-size:clamp(1.8rem,3.2vw,2.3rem);font-weight:500;margin-bottom:18px;}
+  .about-text p{color:var(--text-muted);margin-bottom:16px;}
+  .about-badge{
+    margin-top:26px;display:inline-flex;align-items:center;gap:12px;
+    background:rgba(255,79,160,.1);border:1px solid var(--border);
+    padding:14px 20px;border-radius:14px;
+  }
+  .about-badge .ic{font-size:1.3rem;}
+  .about-badge strong{display:block;color:var(--pink-pastel);font-size:.92rem;}
+  .about-badge span{font-size:.85rem;color:var(--text-muted);}
+
+  /* final cta */
+  .final-cta{
+    text-align:center;border-radius:28px;
+    background:linear-gradient(160deg,#1c1520,#0b0a0d 60%);
+    border:1px solid var(--border);
+    padding:80px 30px;position:relative;overflow:hidden;
+  }
+  .final-cta h2{font-size:clamp(2rem,4.4vw,2.9rem);font-weight:500;max-width:680px;margin:0 auto 18px;}
+  .final-cta p{color:var(--text-muted);max-width:560px;margin:0 auto 34px;font-size:1.08rem;}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:48px 0 30px;background:var(--bg-alt);}
+  .footer-inner{display:flex;flex-direction:column;gap:22px;align-items:center;text-align:center;}
+  .footer-links{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;font-size:.9rem;color:var(--text-muted);}
+  .footer-links a:hover{color:var(--pink-pastel);}
+  .footer-copy{font-size:.82rem;color:#7a7480;}
+
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+</style>
+</head>
+<body>
+
+  <div class="announce">Tech done for you. Systems that actually work. Design that feels like you.</div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo">
+        <span class="mark">F</span>
+        <span>The Funnel Chemist<span class="sub">Bernadette Villones</span></span>
+      </a>
+      <nav class="links">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Reviews</a>
+      </nav>
+      <a href="#final-cta" class="btn small nav-cta">Book a Discovery Call</a>
+      <button class="burger" id="burgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#services">Services</a>
+      <a href="#process">How It Works</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#final-cta" class="btn small" style="margin-top:12px;width:fit-content;">Book a Discovery Call</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="bg-glow">
+        <span style="width:520px;height:520px;background:#ff2e86;top:-180px;left:-160px;"></span>
+        <span style="width:420px;height:420px;background:#ffd6ea;top:120px;right:-140px;opacity:.18;"></span>
+      </div>
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>For Women-Owned Service Businesses</div>
+          <h1>Funnels That Convert. Systems That Flow. Design That Feels Like <em>You.</em></h1>
+          <p class="lead">Done-for-you funnels, automation, and design for women-owned service businesses — without tech stress or guesswork. We handle strategy, design, and backend automation in HighLevel &amp; ClickFunnels, so your business looks premium, runs seamlessly, and converts more leads.</p>
+          <div class="hero-ctas">
+            <a href="#final-cta" class="btn">👉 Book a Discovery Call</a>
+            <a href="#services" class="btn ghost">See What's Included</a>
+          </div>
+          <div class="trust-row">
+            <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#ff4fa0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> HighLevel &amp; ClickFunnels experts</div>
+            <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#ff4fa0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Full backend ownership</div>
+            <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#ff4fa0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Clear communication, always</div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="browser-card">
+            <div class="browser-bar"><span></span><span></span><span></span></div>
+            <div class="browser-body">
+              <div class="fake-headline"></div>
+              <div class="fake-line" style="width:90%"></div>
+              <div class="fake-line" style="width:60%"></div>
+              <div class="fake-block"><div class="flow"><div></div><div></div><div></div></div></div>
+              <div class="fake-btn"></div>
+            </div>
+          </div>
+          <div class="float-chip one"><span class="dotcheck">✓</span> Live &amp; converting</div>
+          <div class="float-chip two"><span class="dotcheck">⚙</span> Automations running</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- I SEE YOU -->
+    <section class="section alt" id="reality">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">💭 Current Reality</div>
+          <h2>If you've been trying to piece everything together on your own — <em>you're not alone.</em></h2>
+        </div>
+        <div class="pain-grid reveal">
+          <div class="pain-item"><span class="x">✕</span> Tried to set up your funnel, but something always feels off</div>
+          <div class="pain-item"><span class="x">✕</span> Jumped between tools that don't fully connect</div>
+          <div class="pain-item"><span class="x">✕</span> Worked with freelancers who didn't quite "get it"</div>
+          <div class="pain-item"><span class="x">✕</span> Spent hours fixing things that should've just worked</div>
+        </div>
+        <p class="pain-note reveal">And at some point, it starts to feel overwhelming. Not because you're not capable — but because <strong>this was never meant to be figured out alone.</strong></p>
+      </div>
+    </section>
+
+    <!-- TRANSFORMATION -->
+    <section class="section" id="possible">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">✨ What's Possible</div>
+          <h2>Imagine a system that feels <em>clear, connected, and complete.</em></h2>
+        </div>
+        <div class="transform-wrap reveal">
+          <div class="stack">
+            <p>Your website reflects your brand beautifully.</p>
+            <p>Your funnel guides your clients naturally.</p>
+            <p>Your backend runs smoothly without constant fixing.</p>
+          </div>
+          <p>Everything is aligned. Everything is working.</p>
+          <p class="muted">And you finally feel confident sending people to your pages.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRIDGE -->
+    <section class="section alt">
+      <div class="wrap bridge reveal">
+        <p>It's not that you need more tools.</p>
+        <p>And it's not that you need to try harder.</p>
+        <p class="strong">You just need the right strategy, design, and automation — built together, the right way.</p>
+        <p>That's exactly what I help you do.</p>
+      </div>
+    </section>
+
+    <!-- SERVICES AT A GLANCE -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">🧩 Services at a Glance</div>
+          <h2>Everything you need to launch, grow, and run your business online — <em>done for you.</em></h2>
+        </div>
+        <div class="glance-grid reveal">
+          <div class="glance-card"><span class="ic">🔍</span><h3>Strategy &amp; Funnel Planning</h3><p>Clear structure and client journey before anything is built.</p></div>
+          <div class="glance-card"><span class="ic">🎨</span><h3>Funnel, Website &amp; Visual Design</h3><p>Custom, on-brand design that looks polished and converts.</p></div>
+          <div class="glance-card"><span class="ic">⚙️</span><h3>Automation &amp; Backend Setup</h3><p>HighLevel and ClickFunnels workflows, CRM, and integrations — done for you.</p></div>
+          <div class="glance-card"><span class="ic">📄</span><h3>Marketing Collaterals &amp; Brand Assets</h3><p>PDFs, lead magnets, social graphics, banners, and launch visuals.</p></div>
+          <div class="glance-card"><span class="ic">🎓</span><h3>Course &amp; Membership Setup</h3><p>Branded course areas with a seamless client experience.</p></div>
+          <div class="glance-card"><span class="ic">🤝</span><h3>Ongoing Support &amp; Optimization</h3><p>Refinements and guidance to keep everything running smoothly.</p></div>
+        </div>
+        <p class="tagline-center reveal">One partner. One system. Everything connected.</p>
+      </div>
+    </section>
+
+    <!-- HOW I CAN HELP (detailed) -->
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">🛠️ How I Can Help You</div>
+          <h2>Strategy, design, and automation — <em>working together.</em></h2>
+        </div>
+        <div class="reveal">
+          <div class="help-row">
+            <div class="help-num">01</div>
+            <div><h3>🔍 Strategic Funnel &amp; System Planning</h3><p>We map your full client journey — from first click to conversion — so everything is built with intention and clarity.</p></div>
+          </div>
+          <div class="help-row">
+            <div class="help-num">02</div>
+            <div><h3>🎨 Funnel, Website &amp; Visual Design</h3><p>I design pages and assets that reflect your brand and build trust instantly — no templates, no guesswork.</p></div>
+          </div>
+          <div class="help-row">
+            <div class="help-num">03</div>
+            <div><h3>⚙️ Automation &amp; Backend Setup</h3><p>From HighLevel to ClickFunnels, I handle your workflows, CRM, and integrations so your systems run seamlessly in the background.</p></div>
+          </div>
+          <div class="help-row">
+            <div class="help-num">04</div>
+            <div><h3>📄 Marketing Collateral &amp; Brand Assets</h3><p>Your brand stays consistent across every touchpoint — from PDFs to social media to launch materials.</p></div>
+          </div>
+          <div class="help-row">
+            <div class="help-num">05</div>
+            <div><h3>🎓 Course &amp; Membership Setup</h3><p>I structure and design your course or membership area so it's easy for you — and your clients — to navigate.</p></div>
+          </div>
+          <div class="help-row">
+            <div class="help-num">06</div>
+            <div><h3>🤝 Ongoing Support &amp; Optimization</h3><p>Refinements, adjustments, and guidance so your systems continue to work smoothly after launch.</p></div>
+          </div>
+        </div>
+        <p class="tagline-center reveal">One partner. One system. Everything connected.</p>
+      </div>
+    </section>
+
+    <!-- WHY CLIENTS CHOOSE ME -->
+    <section class="section" id="why">
+      <div class="wrap why-wrap">
+        <div class="why-card reveal">
+          <div class="eyebrow">💎 Why Clients Choose Me</div>
+          <blockquote>"I don't disappear. I don't leave you guessing. And I don't hand things off half-finished."</blockquote>
+        </div>
+        <div class="why-list reveal">
+          <p>Many service providers can design pages or set up automations. What most clients struggle to find is someone they can truly rely on.</p>
+          <p><strong>I take full ownership of the backend</strong> and stay committed to your project from start to finish — so you feel supported, informed, and confident every step of the way.</p>
+          <p>I'm known for being a steady, reliable partner who stays present, communicates clearly, and keeps projects moving forward — even when life gets busy. My clients never have to worry about being left in the dark or managing the backend alone.</p>
+          <p><strong>When you work with me, you're not just hiring a funnel or automation specialist.</strong> You're gaining a partner who treats your business with the same care and consistency as their own.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK TOGETHER -->
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">🤍 What It's Like to Work Together</div>
+          <h2>Simple, clear, and <em>fully supported.</em></h2>
+        </div>
+        <div class="together-grid reveal">
+          <div class="together-col">
+            <h3>You won't have to</h3>
+            <div class="together-list no">
+              <div class="row"><span class="ic">✕</span> Chase updates</div>
+              <div class="row"><span class="ic">✕</span> Wonder what's happening next</div>
+              <div class="row"><span class="ic">✕</span> Try to piece things together on your own</div>
+            </div>
+          </div>
+          <div class="together-col">
+            <h3>Instead, you'll experience</h3>
+            <div class="together-list yes">
+              <div class="row"><span class="ic">✓</span> Clear communication at every stage</div>
+              <div class="row"><span class="ic">✓</span> Steady progress you can trust</div>
+              <div class="row"><span class="ic">✓</span> A backend that's fully handled for you</div>
+              <div class="row"><span class="ic">✓</span> A partner who stays present from start to finish</div>
+            </div>
+          </div>
+        </div>
+        <p class="tagline-center reveal">So you can focus on your business — while everything behind the scenes is taken care of.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="process">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">🧠 How It Works</div>
+          <h2>Clear steps. No overwhelm. <em>Everything done for you.</em></h2>
+        </div>
+        <div class="steps reveal">
+          <div class="step"><div class="num">1</div><h3>Book a Call</h3><p>We talk through your goals and what you need — no tech prep required.</p></div>
+          <div class="step"><div class="num">2</div><h3>Get a Clear Plan</h3><p>You'll know exactly what we're building, why it works, and what happens next.</p></div>
+          <div class="step"><div class="num">3</div><h3>I Handle the Build</h3><p>Strategy, design, automation — I take care of everything.</p></div>
+          <div class="step"><div class="num">4</div><h3>Review &amp; Refine</h3><p>We finalize everything together so it's exactly how you want it.</p></div>
+          <div class="step"><div class="num">5</div><h3>Launch &amp; Support</h3><p>You get a full walkthrough and support so you feel confident moving forward.</p></div>
+        </div>
+        <p class="steps-note reveal">Clear steps. No overwhelm. Everything done for you.</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section alt" id="testimonials">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;">💬 Social Proof</div>
+          <h2>What it's like to <em>work with me.</em></h2>
+        </div>
+        <div class="testi-grid reveal">
+          <div class="testi-card">
+            <div class="quote-mark">"</div>
+            <p>Working with Bern felt like such a relief. Everything was clear, handled, and delivered exactly as promised.</p>
+            <div class="testi-who"><div class="testi-avatar">SM</div><span>Service-based business owner</span></div>
+          </div>
+          <div class="testi-card">
+            <div class="quote-mark">"</div>
+            <p>She finally captured what I had in mind — and made everything work together seamlessly.</p>
+            <div class="testi-who"><div class="testi-avatar">JL</div><span>Coaching &amp; consulting client</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-portrait reveal">BV</div>
+        <div class="about-text reveal">
+          <div class="eyebrow">🤍 About</div>
+          <h2>I'm Bernadette — <em style="color:var(--pink-pastel);font-style:normal;">The Funnel Chemist.</em></h2>
+          <p>I'm a funnel and automation specialist who helps women-owned service businesses simplify their tech and build systems that actually work.</p>
+          <p>But beyond strategy, design, and automation, what my clients value most is how I show up. I prioritize clear communication, steady execution, and full ownership of the backend — so you never feel like you're managing everything alone.</p>
+          <p>My goal is simple: to make your business look premium, run seamlessly, and feel fully supported behind the scenes.</p>
+          <div class="about-badge">
+            <span class="ic">🛡️</span>
+            <div><strong>Backend Peace of Mind</strong><span>You don't have to manage the tech — I handle it, fully and consistently.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section alt">
+      <div class="wrap">
+        <div class="final-cta reveal" id="final-cta">
+          <div class="bg-glow"><span style="width:400px;height:400px;background:#ff2e86;top:-120px;left:40%;opacity:.25;"></span></div>
+          <div class="eyebrow" style="margin-left:auto;margin-right:auto;position:relative;z-index:1;">🔥 Let's Get Started</div>
+          <h2 style="position:relative;z-index:1;">Ready to stop figuring it out and finally have a system that works?</h2>
+          <p style="position:relative;z-index:1;">Let's build something that looks beautiful, runs smoothly, and supports your growth.</p>
+          <div style="position:relative;z-index:1;">
+            <a href="#top" class="btn">👉 Book Your Discovery Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="logo"><span class="mark">F</span><span>The Funnel Chemist</span></div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#final-cta">Contact</a>
+      </div>
+      <p class="footer-copy">© Bernadette Villones – The Funnel Chemist. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script>
+  // mobile menu toggle
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
